@@ -10,7 +10,7 @@ def sieve_of_eratosthenes(n):
     """
     primeNumbers = []
     # Initialize a list (assume all are prime)
-    prime = [True for i in range(n + 1)]
+    prime = [True] * (n + 1)
     for potentialPrime in range(2, n + 1):
         if prime[potentialPrime]:
             primeNumbers.append(potentialPrime)
