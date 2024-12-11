@@ -15,7 +15,7 @@ def sieve_of_eratosthenes(n):
         if prime[potentialPrime]:
             primeNumbers.append(potentialPrime)
             for multiple in range(potentialPrime, n + 1, potentialPrime):
-                sieveList[multiple] = False
+                prime[multiple] = False
     return primeNumbers
 
 
