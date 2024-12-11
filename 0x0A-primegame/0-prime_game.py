@@ -8,21 +8,15 @@ def sieve_of_eratosthenes(n):
     :param n:
     :return:
     """
-    # Initialize a list to track prime number(assume all are prime)
+    primeNumbers = []
+    # Initialize a list (assume all are prime)
     prime = [True for i in range(n + 1)]
-    p = 2
-
-    # Sieve algorithm: Mark non-prime numbers
-    while p * p <= n:
-        if prime[p]:
-            for i in range(p * p, n + 1, p):  # Mark multip p non prime
-                prime[i] = False
-        p += 1
-
-    # Print all prime numbers
-    for p in range(2, n + 1):
-        if prime[p]:
-            print(p)
+    for potentialPrime in range(2, n + 1):
+        if prime[potentialPrime]:
+            primeNumbers.append(potentialPrime)
+            for multiple in range(potentialPrime, n + 1, potentialPrime):
+                sieveList[multiple] = False
+    return primeNumbers
 
 
 def isWinner(numRounds, roundValues):
