@@ -2,35 +2,41 @@
 """Maria and Ben are playing Prime game"""
 
 
-def sieve_of_eratosthenes(n):
+def primes(n):
+    """Return list of prime numbers between 1 and n inclusive
+       Args:
+        n (int): upper boundary of range. lower boundary is always 1
     """
-    use to generate prime numbers up to n limit
-    :param n:
-    :return:
-    """
-    primeNumbers = []
-    # Initialize a list (assume all are prime)
-    prime = [True] * (n + 1)
-    for potentialPrime in range(2, n + 1):
-        if prime[potentialPrime]:
-            primeNumbers.append(potentialPrime)
-            for multiple in range(potentialPrime, n + 1, potentialPrime):
-                prime[multiple] = False
-    return primeNumbers
+    prime = []
+    sieve = [True] * (n + 1)
+    for p in range(2, n + 1):
+        if (sieve[p]):
+            prime.append(p)
+            for i in range(p, n + 1, p):
+                sieve[i] = False
+    return prime
 
 
-def isWinner(numRounds, roundValues):
-    if not numRounds or not roundValues:
+def isWinner(x, nums):
+    """
+    Determines winner of Prime Game
+    Args:
+        x (int): no. of rounds of game
+        nums (int): upper limit of range for each round
+    Return:
+        Name of winner (Maria or Ben) or None if winner cannot be found
+    """
+    if x is None or nums is None or x == 0 or nums == []:
         return None
-    mariaScore = benScore = 0
-    for i in range(numRounds):
-        primes = sieve_of_eratosthenes(roundValues[i])
-        if len(primes) % 2 == 0:
-            benScore += 1
+    Maria = Ben = 0
+    for i in range(x):
+        prime = primes(nums[i])
+        if len(prime) % 2 == 0:
+            Ben += 1
         else:
-            mariaScore += 1
-    if mariaScore > benScore:
-        return "Maria"
-    elif benScore > mariaScore:
-        return "Ben"
+            Maria += 1
+    if Maria > Ben:
+        return 'Maria'
+    elif Ben > Maria:
+        return 'Ben'
     return None
